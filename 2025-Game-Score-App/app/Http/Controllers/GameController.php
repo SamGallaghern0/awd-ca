@@ -34,7 +34,7 @@ class GameController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Test
      */
     public function show(Game $game)
     {
