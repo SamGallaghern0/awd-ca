@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GameController extends Controller
 {
@@ -30,7 +31,27 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'genre' => 'required|max:100',
+            'description' => 'required|max500',
+            'year' => 'required|integer',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        if ($request->hasFile('image')) {
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images/games'), $imageName);
+        }
+        Game::create([
+            'title' => $request->title,
+            'genre' => $request->genre,
+            'description' => $request->description,
+            'year' => $request->year,
+            'image' => $imageName,
+            'created_at' => now(),
+            'updated_at' => nos()
+        ]);
+        return to_route('games.index')->with('success','Game created successfully!');
     }
 
     /**
