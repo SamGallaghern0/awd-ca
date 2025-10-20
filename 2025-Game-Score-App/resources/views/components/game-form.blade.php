@@ -1,4 +1,4 @@
-@props(['action', 'method'])
+@props(['action', 'method', 'game'])
 
 <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -13,7 +13,7 @@
         id="title"
         value="{{ old('title', $game->title ?? ' ') }}"
         required
-        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm />
+        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
         @error('title')
         <p class="text-sm text-red-600">{{ $message }}</p>
         @enderror
@@ -27,7 +27,7 @@
         id="year"
         value="{{ old('year', $game->year ?? ' ') }}"
         required
-        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm />
+        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
         @error('year')
         <p class="text-sm text-red-600">{{ $message }}</p>
         @enderror
@@ -41,7 +41,7 @@
         id="genre"
         value="{{ old('genre', $game->genre ?? ' ') }}"
         required
-        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm />
+        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
         @error('genre')
         <p class="text-sm text-red-600">{{ $message }}</p>
         @enderror
@@ -54,7 +54,7 @@
         id="description"
         value="{{ old('description', $game->description ?? ' ') }}"
         required
-        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm />
+        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
         @error('description')
         <p class="text-sm text-red-600">{{ $message }}</p>
         @enderror

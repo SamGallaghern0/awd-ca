@@ -34,7 +34,7 @@ class GameController extends Controller
         $request->validate([
             'title' => 'required',
             'genre' => 'required|max:100',
-            'description' => 'required|max500',
+            'description' => 'required|max:500',
             'year' => 'required|integer',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -49,7 +49,7 @@ class GameController extends Controller
             'year' => $request->year,
             'image' => $imageName,
             'created_at' => now(),
-            'updated_at' => nos()
+            'updated_at' => now()
         ]);
         return to_route('games.index')->with('success','Game created successfully!');
     }
@@ -67,7 +67,7 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        //
+        return view('games.edit')->with('game', $game);
     }
 
     /**
@@ -75,7 +75,27 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'genre' => 'required|max:100',
+            'description' => 'required|max:500',
+            'year' => 'required|integer',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        if ($request->hasFile('image')) {
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images/games'), $imageName);
+        }
+        $game->update([
+            'title' => $request->title,
+            'genre' => $request->genre,
+            'description' => $request->description,
+            'year' => $request->year,
+            'image' => $imageName,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        return to_route('games.index', $game)->with('success','Game created updated!');
     }
 
     /**
@@ -83,6 +103,7 @@ class GameController extends Controller
      */
     public function destroy(Game $game)
     {
-        //
+        $game->delete();
+        return to_route('games.index')->with('success','Game deleted successfully!');
     }
 }
