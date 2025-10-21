@@ -22,3 +22,7 @@
         </div>
     </div>
 </x-app-layout>
+
+<?php
+    /*This is where the cards bring you when you click on them.
+    It shows all the information about them when if created or edited, however it does not feature time updated or created.*/

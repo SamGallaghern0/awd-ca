@@ -4,3 +4,6 @@
     <h4 class="font-bold text-lg">{{ $title }}</h4>
     <img src="{{asset( 'images/games/' .$image)}}" src="{{$title}}">
 </div>
+
+<?php
+    /*Displays what the database uses for the cards on the index page.*/

@@ -10,3 +10,6 @@
     <h3 class="text-gray-800 font-semibold mb-2" style="font-size : 2rem;">Description</h3>
     <p class="text-gray-700 leading-relaxed">{{ $description }}</p>
 </div>
+
+<?php
+    /*Displays the database needs for the details page for when you click on a card.*/

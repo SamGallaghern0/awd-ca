@@ -84,3 +84,7 @@
         </x-primary-button>
     </div>
 </form>
+
+<?php
+    /*This is the form which allows the user to create or update games and send them to the database.*/
+    /*The information here is brought to the ceate page.*/

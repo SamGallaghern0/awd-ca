@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('games', function (Blueprint $table) {
+        Schema::create('games', function (Blueprint $table) {   /*This is the database table where the layout for a game is.*/
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
             $table->text('genre')->nullable();
             $table->integer('year');
             $table->string('image');
-            $table->timestamps();
+            $table->timestamps();   /*Instead of using two seperate time stamps for the database, it's just the one.*/
         });
     }
 

@@ -15,7 +15,7 @@
                         :method="'PUT'"
                         :game="$game"
                     />
-                    <a href="{{ route('games.index', $game) }}" class="text-gray-600 bg-red-300 hover:bg-orange-700 font-bold py-2 px-4 rounded">
+                    <a href="{{ route('games.index', $game) }}" class="text-gray-600 bg-red-300 hover:bg-red-700 font-bold py-2 px-4 rounded">
                         Cancel
                     </a>
                 </div>
@@ -23,3 +23,6 @@
         </div>
     </div>
 </x-app-layout>
+
+<?php
+    /*This is the page which allows the user to edit and update exsisting games on the database.*/

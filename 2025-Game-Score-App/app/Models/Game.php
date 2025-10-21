@@ -9,7 +9,7 @@ class Game extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+    protected $fillable = [  /*The database layout.*/
         'title',
         'genre',
         'description',

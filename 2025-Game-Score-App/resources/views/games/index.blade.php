@@ -43,3 +43,8 @@
         </div>
     </div>
 </x-app-layout>
+
+<?php
+    /*The index page is where the user will be able to see all the games and will be able to edit or delete the games with the help of two buttons.
+    It aslo allows the user to click on the cards bringing them to the description or show page.
+    The edit button also allows brings the user to the edit page however the delete button does not have a page so it just deletes the game.*/

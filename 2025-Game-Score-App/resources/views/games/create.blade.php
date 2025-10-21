@@ -19,3 +19,6 @@
         </div>
     </div>
 </x-app-layout>
+
+<?php
+    /*The page where the user creates and stores games.*/

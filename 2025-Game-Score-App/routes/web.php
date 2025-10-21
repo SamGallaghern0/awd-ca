@@ -18,13 +18,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/games', [GameController::class, 'index'])->name('games.index');
-Route::get('/games/create', [GameController::class, 'create'])->name('games.create');
-Route::get('/games/{game}', [GameController::class, 'show'])->name('games.show');
-Route::post('/games', [GameController::class, 'store'])->name('games.store');
+Route::get('/games', [GameController::class, 'index'])->name('games.index');   /*To display or list all the games.*/
+Route::get('/games/create', [GameController::class, 'create'])->name('games.create');   /*To show the from to create new games.*/
+Route::get('/games/{game}', [GameController::class, 'show'])->name('games.show');   /*To show one specific game.*/
+Route::post('/games', [GameController::class, 'store'])->name('games.store');   /*To store a new game on the database.*/
 
-Route::get('/games/{game}/edit', [GameController::class, 'edit'])->name('games.edit');
-Route::put('/games/{game}', [GameController::class, 'update'])->name('games.update');
-Route::delete('/games/{game}', [GameController::class, 'destroy'])->name('games.destroy');
+Route::get('/games/{game}/edit', [GameController::class, 'edit'])->name('games.edit');   /*To show the edit form so that data may be edited or cahnged on the database.*/
+Route::put('/games/{game}', [GameController::class, 'update'])->name('games.update');   /*To update a game on the databse once done editing.*/
+Route::delete('/games/{game}', [GameController::class, 'destroy'])->name('games.destroy');   /*To delete a game.*/
 
 require __DIR__.'/auth.php';

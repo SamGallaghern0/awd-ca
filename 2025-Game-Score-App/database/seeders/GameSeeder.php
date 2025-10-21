@@ -16,7 +16,7 @@ class GameSeeder extends Seeder
     {
         $currentTimestamp = Carbon::now();
         //
-        Game::insert([
+        Game::insert([   /*Hard coded games for index page.*/
             [
                 'title'=> 'Cruelty Squad',
                 'description'=> 'An immersive power fantasy simulator with tactical stealth elements set in a sewage infused garbage world',
