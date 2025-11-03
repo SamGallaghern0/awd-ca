@@ -18,9 +18,13 @@
                     <x-nav-link :href="route('games.index')" :active="request()->routeIs('games.index')">
                         {{ __('View All Games') }}  <!-- Brings user to index page. -->
                     </x-nav-link>
-                    <x-nav-link :href="route('games.create')" :active="request()->routeIs('games.create')">
-                        {{ __('Create a Game') }}  <!-- Brings user to create a game page. -->
-                    </x-nav-link>
+
+                    <!-- Apperas only for admin users. -->
+                     @if(auth()->user()->role === 'admin')
+                        <x-nav-link :href="route('games.create')" :active="request()->routeIs('games.create')">
+                            {{ __('Create a Game') }}  <!-- Brings user to create a game page. -->
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
