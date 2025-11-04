@@ -18,4 +18,9 @@ class Game extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function scores()
+    {
+        return $this->hasMany(Score::class);
+    }
 }

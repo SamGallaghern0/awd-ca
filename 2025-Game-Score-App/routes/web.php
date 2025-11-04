@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\ScoreController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,5 +27,10 @@ Route::post('/games', [GameController::class, 'store'])->name('games.store');   
 Route::get('/games/{game}/edit', [GameController::class, 'edit'])->name('games.edit');   /*To show the edit form so that data may be edited or cahnged on the database.*/
 Route::put('/games/{game}', [GameController::class, 'update'])->name('games.update');   /*To update a game on the databse once done editing.*/
 Route::delete('/games/{game}', [GameController::class, 'destroy'])->name('games.destroy');   /*To delete a game.*/
+
+
+ Route::resource('scores', ScoreController::class)->except(['store']);
+
+Route::post('/games/{game}/scores', [ScoreController::class, 'store'])->name('scores.store');
 
 require __DIR__.'/auth.php';
