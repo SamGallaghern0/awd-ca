@@ -69,7 +69,7 @@ class ScoreController extends Controller
      */
     public function update(Request $request, Score $score)
     {
-        $review->update($request->only(['rating', 'comment']));
+        $score->update($request->only(['rating', 'comment']));
         return redirect()->route('games.show', $score->game_id)->with('success', 'Score updated successfully!');
     }
 
@@ -78,6 +78,7 @@ class ScoreController extends Controller
      */
     public function destroy(Score $score)
     {
-        //
+        $score->delete();
+        return to_route('games.index')->with('success','Score deleted successfully!');
     }
 }

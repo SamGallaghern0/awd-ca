@@ -28,9 +28,9 @@
                                     <p>Rating: {{$score->rating}} / 5</p>
                                     <p>{{$score->comment}}</p>
 
-                                    @if ($score->user->is(auth()->user()) || auth()->user()->role === 'admin')
+                                    @if(auth()->user()->role === 'admin')
 
-                                        <a href="{{route(scores.edit, $score)}}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                        <a href="{{route('scores.edit', $score)}}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                             {{_('Edit Score')}}
                                         </a>
                                         <form method="POST" action="{{route('scores.destroy', $score)}}">

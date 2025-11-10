@@ -29,7 +29,7 @@ Route::put('/games/{game}', [GameController::class, 'update'])->name('games.upda
 Route::delete('/games/{game}', [GameController::class, 'destroy'])->name('games.destroy');   /*To delete a game.*/
 
 
- Route::resource('scores', ScoreController::class)->except(['store']);
+Route::resource('scores', ScoreController::class)->except(['store']);
 
 Route::post('/games/{game}/scores', [ScoreController::class, 'store'])->name('scores.store');
 

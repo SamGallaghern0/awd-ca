@@ -58,7 +58,7 @@ class GameController extends Controller
 
     public function show(Game $game)
     {
-        $game->load('scores.user');
+        $game->load('scores');
         return view('games.show', compact('game'));   /*Allows the contents of a game on the database to be shown on the website.*/
     }
 
