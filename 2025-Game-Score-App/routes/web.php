@@ -33,4 +33,7 @@ Route::resource('scores', ScoreController::class)->except(['store']);
 
 Route::post('/games/{game}/scores', [ScoreController::class, 'store'])->name('scores.store');
 
+
+Route::resource('publishers', PublisherController::class)->middleware('auth');
+
 require __DIR__.'/auth.php';

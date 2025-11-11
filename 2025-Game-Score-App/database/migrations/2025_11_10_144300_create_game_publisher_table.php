@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('game_publisher', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('game_id')->constrained()->onDelete('cascade');
+            $table->foreignId('publisher_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

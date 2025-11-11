@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 Use App\Models\Game;
+Use App\Models\Publisher;
 
 class GameSeeder extends Seeder
 {
@@ -16,7 +17,7 @@ class GameSeeder extends Seeder
     {
         $currentTimestamp = Carbon::now();
         //
-        Game::insert([   /*Hard coded games for index page.*/
+        $games=[   /*Hard coded games for index page.*/
             [
                 'title'=> 'Cruelty Squad',
                 'description'=> 'An immersive power fantasy simulator with tactical stealth elements set in a sewage infused garbage world',
@@ -44,6 +45,12 @@ class GameSeeder extends Seeder
                 'created_at'=> $currentTimestamp,
                 'updated_at'=> $currentTimestamp
             ],
-        ]);
+        ];
+
+        foreach ($games as $gameData){
+            $game = Game::create(array_merge($gameData, ['created_at' => $currentTimestamp, 'updated_at' => $currentTimestamp]));
+            $publisher = Publisher::inRandomOrder()->take(2)->pluck('id');
+            $game->publishers()->attach($publisher);
+        }
     }
 }

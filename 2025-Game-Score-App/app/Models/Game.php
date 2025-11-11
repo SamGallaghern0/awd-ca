@@ -23,4 +23,9 @@ class Game extends Model
     {
         return $this->hasMany(Score::class);
     }
+
+    public function publishers()
+    {
+        return $this->belongsToMany(Publisher::class);
+    }
 }

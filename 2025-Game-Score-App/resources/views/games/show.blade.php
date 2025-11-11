@@ -30,13 +30,13 @@
 
                                     @if(auth()->user()->role === 'admin')
 
-                                        <a href="{{route('scores.edit', $score)}}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                        <a href="{{route('scores.edit', $score)}}" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
                                             {{_('Edit Score')}}
                                         </a>
                                         <form method="POST" action="{{route('scores.destroy', $score)}}">
                                             @csrf
                                             @method('delete')
-                                            <x-danger-button :href="route('scores.destroy', $score)"
+                                            <x-danger-button :href="route('scores.destroy', $score)" 
                                                     onclick="event.preventDefault(); this.closest('form').submit();">
                                                 {{_('Delete Score')}}
                                             </x-danger-button>
