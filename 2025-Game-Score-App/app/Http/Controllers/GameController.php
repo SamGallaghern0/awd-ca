@@ -95,7 +95,7 @@ class GameController extends Controller
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        return to_route('games.index', $game)->with('success','Game created updated!');   /*Also returns the user to the incex page once a game is updated.*/
+        return to_route('games.index', $game)->with('success','Game updated successfully!');   /*Also returns the user to the incex page once a game is updated.*/
     }
 
     /**

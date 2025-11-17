@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-x1 text-gray-800 leading-tight">
-            {{_('All Games')}}
+            {{_('All Publishers')}}
         </h2>
     </x-slot>
 
@@ -13,21 +13,21 @@
         <div class="max-w-7x1 mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <h3 class="font-semibold text-lg mb-4 ">List of Games:</h3>
+                    <h3 class="font-semibold text-lg mb-4 ">List of Publishers:</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        @foreach($games as $game)
+                        @foreach($publishers as $publisher)
                         <div class="border p-4 rounded-lg shadow-md">
-                            <a href="{{ route('games.show', $game) }}">
-                                <x-game-card
-                                    :title="$game->title"
-                                    :image="$game->image"
+                            <a href="{{ route('publishers.show', $publisher) }}">
+                                <x-publisher-card
+                                    :name="$publisher->name"
+                                    :logo="$publisher->logo"
                                 />
                             </a>
                             <div class="mt-4 flex space-x-2">
-                                <a href="{{ route('games.edit', $game) }}" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                <a href="{{ route('publishers.edit', $publisher) }}" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
                                     Edit
                                 </a>
-                                <form action="{{ route('games.destroy', $game) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this game?');">
+                                <form action="{{ route('publishers.destroy', $publisher) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this publisher?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">
@@ -43,8 +43,3 @@
         </div>
     </div>
 </x-app-layout>
-
-<?php
-    /*The index page is where the user will be able to see all the games and will be able to edit or delete the games with the help of two buttons.
-    It aslo allows the user to click on the cards bringing them to the description or show page.
-    The edit button also allows brings the user to the edit page however the delete button does not have a page so it just deletes the game.*/

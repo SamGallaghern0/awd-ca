@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\ScoreController;
+use App\Http\Controllers\PublisherController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,7 +34,15 @@ Route::resource('scores', ScoreController::class)->except(['store']);
 
 Route::post('/games/{game}/scores', [ScoreController::class, 'store'])->name('scores.store');
 
-
 Route::resource('publishers', PublisherController::class)->middleware('auth');
+
+Route::get('/publishers', [PublisherController::class, 'index'])->name('publishers.index');
+Route::get('/publishers/create', [PublisherController::class, 'create'])->name('publishers.create');
+Route::get('/publishers/{publisher}', [PublisherController::class, 'show'])->name('publishers.show');
+Route::post('/publishers', [PublisherController::class, 'store'])->name('publishers.store');
+
+Route::get('/publishers/{publisher}/edit', [PublisherController::class, 'edit'])->name('publishers.edit');
+Route::put('/publishers/{publisher}', [PublisherController::class, 'update'])->name('publishers.update');
+Route::delete('/publishers/{publisher}', [PublisherController::class, 'destroy'])->name('publishers.destroy');
 
 require __DIR__.'/auth.php';

@@ -49,7 +49,7 @@ class GameSeeder extends Seeder
 
         foreach ($games as $gameData){
             $game = Game::create(array_merge($gameData, ['created_at' => $currentTimestamp, 'updated_at' => $currentTimestamp]));
-            $publisher = Publisher::inRandomOrder()->take(2)->pluck('id');
+            $publisher = Publisher::inRandomOrder()->take(1)->pluck('id');
             $game->publishers()->attach($publisher);
         }
     }

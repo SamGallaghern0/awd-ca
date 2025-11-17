@@ -16,7 +16,10 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('games.index')" :active="request()->routeIs('games.index')">
-                        {{ __('View All Games') }}  <!-- Brings user to index page. -->
+                        {{ __('View All Games') }}  <!-- Brings user to games index page. -->
+                    </x-nav-link>
+                    <x-nav-link :href="route('publishers.index')" :active="request()->routeIs('publishers.index')">
+                        {{ __('View All Publishers') }}  <!-- Brings user to publishers index page. -->
                     </x-nav-link>
 
                     <!-- Apperas only for admin users. -->
@@ -25,12 +28,18 @@
                             {{ __('Create a Game') }}  <!-- Brings user to create a game page. -->
                         </x-nav-link>
                     @endif
+                    <!-- Apperas only for admin users. -->
+                     @if(auth()->user()->role === 'admin')
+                        <x-nav-link :href="route('publishers.create')" :active="request()->routeIs('publishers.create')">
+                            {{ __('Add a Publisher') }}  <!-- Brings user to add a publisher page. -->
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
-                <x-dropdown align="right" width="48">
+                <x-dropdown alighn="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }}</div>

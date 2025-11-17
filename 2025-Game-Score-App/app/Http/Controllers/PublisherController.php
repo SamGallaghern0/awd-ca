@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Publisher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PublisherController extends Controller
 {
@@ -12,7 +13,8 @@ class PublisherController extends Controller
      */
     public function index()
     {
-        //
+        $publishers = Publisher::all();
+        return view('publishers.index', compact('publishers'));
     }
 
     /**
@@ -20,7 +22,10 @@ class PublisherController extends Controller
      */
     public function create()
     {
-        //
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('publishers.index')->with('error', 'Access denied.');
+        }
+        return view('publishers.create');
     }
 
     /**
@@ -28,7 +33,23 @@ class PublisherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'bio' => 'required|max:500',
+            'logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        if ($request->hasFile('logo')) {
+            $logoName = time().'.'.$request->logo->extension();
+            $request->logo->move(public_path('logos/publishers'), $logoName);   /*Allows the user to select a file on their computer, or device, and put it in the images file so that it can be shown on the website.*/
+        }
+        Publisher::create([
+            'name' => $request->name,
+            'bio' => $request->bio,
+            'logo' => $logoName,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        return to_route('publishers.index')->with('success','Publisher added successfully!');
     }
 
     /**
@@ -36,7 +57,7 @@ class PublisherController extends Controller
      */
     public function show(Publisher $publisher)
     {
-        //
+        return view('publishers.show', compact('publisher'));
     }
 
     /**
@@ -44,7 +65,7 @@ class PublisherController extends Controller
      */
     public function edit(Publisher $publisher)
     {
-        //
+        return view('publishers.edit')->with('publisher', $publisher);
     }
 
     /**
@@ -52,7 +73,23 @@ class PublisherController extends Controller
      */
     public function update(Request $request, Publisher $publisher)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'bio' => 'required|max:500',
+            'logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        if ($request->hasFile('logo')) {
+            $logoName = time().'.'.$request->logo->extension();
+            $request->logo->move(public_path('logos/publishers'), $logoName);
+        }
+        $publisher->update([
+            'name' => $request->name,
+            'bio' => $request->bio,
+            'logo' => $logoName,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        return to_route('publishers.index', $publisher)->with('success','Publisher updated successfully!');
     }
 
     /**
@@ -60,6 +97,7 @@ class PublisherController extends Controller
      */
     public function destroy(Publisher $publisher)
     {
-        //
+        $publisher->delete();
+        return to_route('publishers.index')->with('success','Publisher deleted successfully!');
     }
 }
