@@ -13,6 +13,7 @@
                     <x-publisher-form
                         :action="route('publishers.store')"
                         :method="'POST'"
+                        :games="$games"
                     />
                 </div>
             </div>

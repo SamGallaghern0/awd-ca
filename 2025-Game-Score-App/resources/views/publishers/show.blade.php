@@ -16,6 +16,16 @@
                             :bio="$publisher->bio"
                         />
                 </div>
+                @foreach($publisher->games as $game)
+                    <div class="border p-4 rounded-lg shadow-md">
+                        <a href="{{ route('games.show', $game) }}">
+                            <x-game-card
+                                :title="$game->title"
+                                :image="$game->image"
+                            />
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

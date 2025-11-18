@@ -1,4 +1,4 @@
-@props(['action', 'method', 'publisher'])
+@props(['action', 'method', 'publisher', 'games'])
 
 <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -46,14 +46,22 @@
             <p class="text-sm text-red-600">{{ $message }}</p>
         @enderror
     </div>
-    @isset($publisher->logo)
-        <div class="mb-4">
-            <img src="{{ asset($publisher->logo) }}" alt="Publisher logo" class="w-24 h-32 object-logo">
+    <div class="mb-4">
+        <label class="block mb-2">Games</label>
+        <div class="grid grid-cols-3 gap-4">
+            @foreach($games as $game)
+        <div class="flex items-center">
+        <input type="checkbox" name="games[]" id="game_{{ $game->id }}" value="{{ $game->id }}"
+            @if(isset($publisherGames) && in_array($game->id, $publisherGames)) checked @endif>
+        <label for="game_{{ $game->id }}" class="ml-2">{{ $game->title }}</label>
         </div>
-    @endisset
-    <div>
+            @endforeach
+        </div>
+    </div>
+    <div class="mb-4">
         <x-primary-button class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
             {{ isset($publisher) ? 'Update Game' : 'Add Publisher' }}
         </x-primary-button>
     </div>
+
 </form>
