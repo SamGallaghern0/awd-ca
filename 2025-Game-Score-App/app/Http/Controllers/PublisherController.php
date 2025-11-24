@@ -15,7 +15,7 @@ class PublisherController extends Controller
     public function index()
     {
         $publishers = Publisher::with('games')->get();
-        return view('publishers.index', compact('publishers'));
+        return view('publishers.index', compact('publishers')); /*Brings the user to an index page with all the publishers displayed on it.*/
     }
 
     /**
@@ -24,10 +24,10 @@ class PublisherController extends Controller
     public function create()
     {
         if (auth()->user()->role !== 'admin') {
-            return redirect()->route('publishers.index')->with('error', 'Access denied.');
+            return redirect()->route('publishers.index')->with('error', 'Access denied.');  /*Only allows users with the admin role access the create publisher page.*/
         }
         $games = Game::all();
-        return view('publishers.create', compact('games'));
+        return view('publishers.create', compact('games'));  /*Brings the user to a page with a form which allows users to add a publisher, only works if the user has the admin role.*/
     }
 
     /**
@@ -39,7 +39,7 @@ class PublisherController extends Controller
             'name' => 'required',
             'bio' => 'required|max:500',
             'logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'games' => 'array',
+            'games' => 'array', /*Stores all the games accosiated with the publishers in an array, also grabs it from the id's or name's from the games table.*/
         ]);
         if ($request->hasFile('logo')) {
             $logoName = time().'.'.$request->logo->extension();

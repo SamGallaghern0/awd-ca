@@ -17,7 +17,7 @@
                         />
                 </div>
                 @foreach($publisher->games as $game)
-                    <div class="border p-4 rounded-lg shadow-md">
+                    <div class="border p-4 rounded-lg grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 bg-gray-500">
                         <a href="{{ route('games.show', $game) }}">
                             <x-game-card
                                 :title="$game->title"

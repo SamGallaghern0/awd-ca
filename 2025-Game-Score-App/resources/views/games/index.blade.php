@@ -14,9 +14,9 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <h3 class="font-semibold text-lg mb-4 ">List of Games:</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         @foreach($games as $game)
-                        <div class="border p-4 rounded-lg shadow-md">
+                        <div class="border p-4 rounded-lg shadow-md bg-gray-500">
                             <a href="{{ route('games.show', $game) }}">
                                 <x-game-card
                                     :title="$game->title"
