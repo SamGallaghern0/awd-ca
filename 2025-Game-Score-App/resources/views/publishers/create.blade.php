@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-x1 text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">  <!-- This is only the page which shows the form allowing the user to add a new publisher and doesn't really do much else. -->
             {{_('Add New Publisher') }}
         </h2>
     </x-slot>
@@ -14,7 +14,7 @@
                         :action="route('publishers.store')"
                         :method="'POST'"
                         :games="$games"
-                    />
+                    />  <!-- Brings up the publisher-form component -->
                 </div>
             </div>
         </div>

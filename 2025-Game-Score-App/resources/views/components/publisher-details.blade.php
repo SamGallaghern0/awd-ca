@@ -7,4 +7,4 @@
     </div>
     <h3 class="text-gray-800 font-semibold mb-2" style="font-size : 2rem;">Bio</h3>
     <p class="text-gray-700 leading-relaxed">{{ $bio }}</p>
-</div>
+</div>  <!-- This does roughly the same as the card but instead includes the bio. -->

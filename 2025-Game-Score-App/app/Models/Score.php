@@ -18,11 +18,11 @@ class Score extends Model
 
     public function game()
     {
-        return $this->belongsTo(Game::class);
+        return $this->belongsTo(Game::class);   /*Has a one to many relationship with score.*/
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);   /*Has a one to many relationship with user.*/
     }
 }

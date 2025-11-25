@@ -58,7 +58,7 @@ class PublisherController extends Controller
      */
     public function show(Publisher $publisher)
     {
-        $publisher->load('games');
+        $publisher->load('games');  /*Loads games related to the publisher, uses the table game_publisher from the database.*/
         return (view('publishers.show', compact('publisher')));
     }
 
@@ -68,7 +68,7 @@ class PublisherController extends Controller
     public function edit(Publisher $publisher)
     {
         $games = Game::all();
-        $publisherGames = $publisher->games->pluck('id')->toArray();
+        $publisherGames = $publisher->games->pluck('id')->toArray();    /*This code grabs all the games from the games table and displays them in an array so that they can be selected as associated games when editing the publisher table.*/
         return view('publishers.edit', compact('publisher', 'games', 'publisherGames'));
     }
 
@@ -90,7 +90,7 @@ class PublisherController extends Controller
         }
         $publisher->update($validated);
         if ($request->has('games')) {
-            $publisher->games()->sync($request->games);
+            $publisher->games()->sync($request->games); /*This code sends the updated data back to the database which both updates the publisher table and the games_publisher table.*/
         }
         return redirect()->route('publishers.index')->with('success','Publisher updated successfully!');
     }
@@ -100,7 +100,7 @@ class PublisherController extends Controller
      */
     public function destroy(Publisher $publisher)
     {
-        $publisher->games()->detach();
+        $publisher->games()->detach();  /*When a publisher is deleted it is detatched from the games it is associated with along with its connection to the games_publisher table.*/
         $publisher->delete();
         return redirect()->route('publishers.index')->with('success','Publisher deleted successfully!');
     }

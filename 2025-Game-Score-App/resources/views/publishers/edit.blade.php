@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-x1 text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">  <!-- This page is similar to the create page and even links to the same component. -->
             {{_('Publisher Game') }}
         </h2>
     </x-slot>
@@ -15,7 +15,7 @@
                         :method="'PUT'"
                         :publisher="$publisher"
                         :games="$games"
-                    />
+                    />  <!-- Same form as the create form. -->
                     <a href="{{ route('publishers.index', $publisher) }}" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150 margin-top-10">
                         Cancel
                     </a>

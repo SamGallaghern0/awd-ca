@@ -14,7 +14,7 @@
                         :action="route('scores.update', $score)"
                         :method="'PUT'"
                         :score="$score"
-                    />
+                    />  <!-- Grabs the edit form for the scores, the edit score dorm is only used once unlike every other form. -->
                 </div>
             </div>
         </div>

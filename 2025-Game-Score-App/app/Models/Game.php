@@ -21,11 +21,11 @@ class Game extends Model
 
     public function scores()
     {
-        return $this->hasMany(Score::class);
+        return $this->hasMany(Score::class);    /*Has a one to many relationship with score.*/
     }
 
     public function publishers()
     {
-        return $this->belongsToMany(Publisher::class);
+        return $this->belongsToMany(Publisher::class);  /*Has a many to many relationship with publisher.*/
     }
 }

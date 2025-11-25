@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-x1 text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{_('All Publishers')}}
         </h2>
     </x-slot>
@@ -21,7 +21,7 @@
                                 <x-publisher-card
                                     :name="$publisher->name"
                                     :logo="$publisher->logo"
-                                />
+                                />  <!-- Grabs the publisher card component. -->
                             </a>
                             <div class="mt-4 flex space-x-2">
                                 <a href="{{ route('publishers.edit', $publisher) }}" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
@@ -31,7 +31,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                                        Delete
+                                        Delete  <!-- Allows user to delete publisher. -->
                                     </button>
                                 </form>
                             </div>

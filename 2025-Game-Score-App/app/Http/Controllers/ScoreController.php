@@ -13,7 +13,7 @@ class ScoreController extends Controller
      */
     public function index()
     {
-        //
+        ///*Scores doesn't get an index page as it only exsists to be added onto games which already has an index page.*/
     }
 
     /**
@@ -21,7 +21,7 @@ class ScoreController extends Controller
      */
     public function create()
     {
-        //
+        ///*Surprisingly scores doesn't have a create page but instead gets a little form under show games.*/
     }
 
     /**
@@ -39,7 +39,7 @@ class ScoreController extends Controller
             'user_id'=>auth()->id(),
             'rating'=>$request->input('rating'),
             'comment'=>$request->input('comment'),
-            'game_id'=>$game->id
+            'game_id'=>$game->id    /*Game id is just the id of games under a new name as scores already has an id.*/
         ]);
 
         return redirect()->route('games.show', $game)->with('success', 'Score added successfully!');
@@ -50,7 +50,7 @@ class ScoreController extends Controller
      */
     public function show(Score $score)
     {
-        //
+        ///*Scores are already shown under shown games and there is no way to preview them all at the same time, i'm not sure you'd want to anyways.*/
     }
 
     /**
@@ -59,7 +59,7 @@ class ScoreController extends Controller
     public function edit(Score $score)
     {
         if (auth()->user()->id !== $score->user_id && auth()->user()->role !== 'admin') {
-            return redirect()->route('games.index')->with('error', 'Access denied.');
+            return redirect()->route('games.index')->with('error', 'Access denied.');   /*Only allows the user who made the comment or admins to edit comments*/
         }
         return view('scores.edit', compact('score'));
     }
@@ -70,7 +70,7 @@ class ScoreController extends Controller
     public function update(Request $request, Score $score)
     {
         $score->update($request->only(['rating', 'comment']));
-        return redirect()->route('games.show', $score->game_id)->with('success', 'Score updated successfully!');
+        return redirect()->route('games.show', $score->game_id)->with('success', 'Score updated successfully!');    /*Doesn't return the user to the index page but returns them to games.show on a selected game.*/
     }
 
     /**

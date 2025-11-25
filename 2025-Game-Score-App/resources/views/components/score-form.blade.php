@@ -36,4 +36,4 @@
     <x-primary-button>
         {{isset($score) ? 'Update Score' : 'save Score'}}
     </x-primary-button>
-</form>
+</form> <!-- This is the form of a score which allows the user to edit and update a score, not create a score only update and edit. Can also only be accessed by admins and people who made the comment. -->

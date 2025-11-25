@@ -17,6 +17,6 @@ class Publisher extends Model
 
     public function games()
     {
-        return $this->belongsToMany(Game::class);
+        return $this->belongsToMany(Game::class);   /*Has a many to many relationship with game.*/
     }
 }

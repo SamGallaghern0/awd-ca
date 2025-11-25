@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-x1 text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{_('All Games')}}
         </h2>
     </x-slot>
@@ -23,7 +23,7 @@
                     @else
                         <ul>
                             @foreach($game->scores as $score)
-                                <li class="bg-gray-100 p-4 rounded-lg">
+                                <li class="bg-gray-500 p-4 rounded-lg">
                                     <p class="font-semibold">{{$score->user->name}} ({{$score->created_at->format('M d, Y')}})</p>
                                     <p>Rating: {{$score->rating}} / 5</p>
                                     <p>{{$score->comment}}</p>
@@ -46,29 +46,31 @@
                             @endforeach
                         </ul>
                     @endif
-                    <h4 class="font-semibold text-md mt-8">Add a Score</h4>
-                    <form action="{{route('scores.store', $game)}}" method="POST" class="mt-4">
-                        @csrf
-                        <div class="mb-4">
-                            <label for="rating" class="block font-medium text-sm text-gray-700">Rating</label>
-                            <select name="rating" id="rating" class="mt-1 block w-full" required>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                        </div>
+                    <div class="bg-gray-500 p-6 rounded-lg shadow-md mt-8">
+                        <h4 class="font-semibold text-md mt-8">Add a Score</h4>
+                        <form action="{{route('scores.store', $game)}}" method="POST" class="mt-4">
+                            @csrf
+                            <div class="mb-4">
+                                <label for="rating" class="block font-medium text-sm text-gray-700">Rating</label>
+                                <select name="rating" id="rating" class="mt-1 block w-full" required>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
 
-                        <div class="mb-4">
-                            <label for="comment" class="block font-medium text-sm text-gray-700">Comment</label>
-                            <textarea name="comment" id="comment" rows="3" class="mt-1 block w-full" placeholder="Write your score opinions here..."></textarea>
-                        </div>
+                            <div class="mb-4">
+                                <label for="comment" class="block font-medium text-sm text-gray-700">Comment</label>
+                                <textarea name="comment" id="comment" rows="3" class="mt-1 block w-full" placeholder="Write your score opinions here..."></textarea>
+                            </div>
 
-                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
-                            Submit Score
-                        </button>
-                    </form>
+                            <button type="submit" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                Submit Score
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -11,14 +11,14 @@
         type="text"
         name="name"
         id="name"
-        value="{{ old('name', $publisher->name ?? ' ') }}"
+        value="{{ old('name', $publisher->name ?? ' ') }}"  
         required
         class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
         @error('name')
         <p class="text-sm text-red-600">{{ $message }}</p>
         @enderror
     </div>
-
+<!-- If adding a publisher it allows user to write the name however, if its being updated it allows the name to be replaced with the new one, this goes for every option on the form. -->
     <div class="mb-4">
     <label for="bio" class="block text-sm text-gray-700">Bio</label>
     <input
@@ -53,7 +53,7 @@
         <div class="flex items-center">
         <input type="checkbox" name="games[]" id="game_{{ $game->id }}" value="{{ $game->id }}"
             @if(isset($publisherGames) && in_array($game->id, $publisherGames)) checked @endif>
-        <label for="game_{{ $game->id }}" class="ml-2">{{ $game->title }}</label>
+        <label for="game_{{ $game->id }}" class="ml-2">{{ $game->title }}</label>   <!-- This grabs the names of the games using the games_publisher table and then displays them in an arrya allowing them to be selected when adding or updating a publisher. -->
         </div>
             @endforeach
         </div>
