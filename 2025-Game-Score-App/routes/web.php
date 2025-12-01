@@ -30,13 +30,13 @@ Route::put('/games/{game}', [GameController::class, 'update'])->name('games.upda
 Route::delete('/games/{game}', [GameController::class, 'destroy'])->name('games.destroy');   /*To delete a game.*/
 
 
-Route::resource('scores', ScoreController::class)->except(['store']);
+Route::resource('scores', ScoreController::class)->except(['store']);   /*This code does everything for the routes for games such as create, edit and show however for some reason it doesn't work for store so it must be excluded and writen down normally.*/
 
 Route::post('/games/{game}/scores', [ScoreController::class, 'store'])->name('scores.store');
 
 Route::resource('publishers', PublisherController::class)->middleware('auth');
 
-Route::get('/publishers', [PublisherController::class, 'index'])->name('publishers.index');
+Route::get('/publishers', [PublisherController::class, 'index'])->name('publishers.index'); /*Does pretty much exactaly what the previous routes do but instead do it for publisher instead.*/
 Route::get('/publishers/create', [PublisherController::class, 'create'])->name('publishers.create');
 Route::get('/publishers/{publisher}', [PublisherController::class, 'show'])->name('publishers.show');
 Route::post('/publishers', [PublisherController::class, 'store'])->name('publishers.store');
